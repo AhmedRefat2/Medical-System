@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "font-awesome@6.5.2",
+      "destination": "wwwroot/lib/font-awesome/"
+    },
+    {
+      "library": "waypoints@4.0.1",
+      "destination": "wwwroot/lib/waypoints/"
+    },
+    {
+      "library": "tabler-icons@1.35.0",
+      "destination": "wwwroot/lib/tabler-icons/"
+    },
+    {
+      "library": "sweetalert2@11.11.1",
+      "destination": "wwwroot/lib/sweetalert2/",
+      "files": [
+        "sweetalert2.all.min.js",
+        "sweetalert2.min.css"
+      ]
+    }
+  ]
+}

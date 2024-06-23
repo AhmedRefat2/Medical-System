@@ -1,0 +1,100 @@
+﻿@model Pagination<PatientMedical>
+@inject IConfiguration config
+@{
+    ViewBag.ActiveItem = "Patients";
+    ViewData["Title"] = "Medicals";
+}
+
+
+@if (!string.IsNullOrEmpty(TempData["message"] as string))
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert" data-translate="en-US">
+        <strong>Done .!</strong> @TempData["message"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<!--Page header-->
+<div class="page-header w-100 border-start ps-2 border-3 border-primary mb-4">
+    <div class="">
+        <div class="page-title text-start fs-6 fw-bold">Medical History<span class="fw-normal text-muted ms-2">Table</span></div>
+    </div>
+</div>
+<!--End Page header-->
+
+<div class="container-fluid">
+    <!-- Row -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h3>
+                        @(ViewBag.Patient.Name ?? "Unknown Patient")
+                    </h3>
+                    <a class="btn btn-primary" asp-action="Create" asp-route-patientId="@ViewBag.Patient.Id">Add Medical History</a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-nowrap border-bottom" id="responsive-datatable">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>ID</th>
+                                    <th>Type</th>
+                                    <th style="max-width: 10rem;">Text</th>
+                                    <th>File</th>
+                                    <th>Created At</th>
+                                    <th>Last Updated At</th>
+                                    <th>Controls</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @if (Model.Count > 0)
+                                {
+                                    var path = $"{config["baseUrl"]}/{config["reports:load"]}/";
+
+                                    @foreach (var PM in Model.Items)
+                                    {
+                                        <tr class="text-center">
+                                            <td class="p-1 align-middle">@PM.Id</td>
+                                            <td class="p-1 align-middle">@PM.Type</td>
+                                            <td class="element-tooltip p-1 align-middle overflow-hidden" style="max-width: 10rem; text-overflow:ellipsis" title="@PM.Text">
+                                                @PM.Text
+                                            </td>
+                                            <td class="p-1 align-middle">
+                                                @if (!string.IsNullOrEmpty(PM.FileName))
+                                                {
+                                                    <a href="@path@PM.FileName" class="btn btn-primary" download="@PM.Type">Download File!</a>
+                                                }
+                                                else
+                                                {
+                                                    <span>None</span>
+                                                }
+                                            </td>
+                                            <td class="p-1 align-middle">@PM.CreatedAt.ToString("F")</td>
+                                            <td class="p-1 align-middle">@PM.UpdatedAt.ToString("F")</td>
+                                            <td class="p-1 align-middle">
+                                                <a type="button" class="btn btn-warning" asp-route-id="@PM.Id" asp-action="Edit">Edit</a>
+                                                <button type="button" class="btn btn-danger" data-type="delete" asp-action="Delete" asp-route-id="@PM.Id">Delete</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="alert alert-danger">
+                                        No Data Found
+                                    </div>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Row -->
+</div>
+@section Scripts {
+
+}

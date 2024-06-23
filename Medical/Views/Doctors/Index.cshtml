@@ -1,0 +1,102 @@
+﻿@model Pagination<ApplicationUser>
+@inject IConfiguration config
+@{
+    ViewBag.ActiveItem = "Doctors";
+    ViewData["Title"] = "Doctors";
+}
+
+
+@if (!string.IsNullOrEmpty(TempData["message"] as string))
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert" data-translate="en-US">
+        <strong>Done .!</strong> @TempData["message"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<!--Page header-->
+<div class="page-header w-100 border-start ps-2 border-3 border-primary mb-4">
+    <div class="">
+        <div class="page-title text-start fs-6 fw-bold">Doctors<span class="fw-normal text-muted ms-2">Table</span></div>
+    </div>
+</div>
+<!--End Page header-->
+
+<div class="container-fluid">
+    <!-- Row -->
+    <div class="row ">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h3 class="card-title">Doctors DataTable</h3>
+                    <a class="btn btn-primary" asp-action="Create" asp-controller="Account" asp-route-userRole="Doctor">Add Doctor</a>
+                </div>
+                <div class="card-body">
+
+                    @{
+                        var path = $"{config["baseUrl"]}/{config["images:load"]}/";
+                    }
+
+                    @if (Model.Count > 0)
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-nowrap border-bottom" id="responsive-datatable">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th class="text-nowrap">ID</th>
+                                        <th class="text-nowrap">Full Name</th>
+                                        <th class="text-nowrap">Specification</th>
+                                        <th class="text-nowrap">Phone Number</th>
+                                        <th class="text-nowrap">E-mail</th>
+                                        <th class="text-nowrap">BirthDate</th>
+                                        <th class="text-nowrap">Picture</th>
+                                        <th class="text-nowrap">QR Code</th>
+                                        <th class="text-nowrap">Created At</th>
+                                        <th class="text-nowrap">Last Updated At</th>
+                                        <th class="text-nowrap">Controls</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var admin in Model.Items)
+                                    {
+                                        <tr class="text-center">
+                                            <td class="p-1 align-middle">@admin.Id</td>
+                                            <td class="p-1 align-middle">@admin.Name</td>
+                                            <td class="p-1 align-middle">@admin.Specification</td>
+                                            <td class="p-1 align-middle">@admin.PhoneNumber</td>
+                                            <td class="p-1 align-middle">@admin.Email</td>
+                                            <td class="p-1 align-middle">@(admin.BirthDate?.ToString() ?? "None")</td>
+                                            <td class="p-1 align-middle text-center" style="max-width: 4rem;"><img class="img-fluid" src="@path@admin.ImagePath" /></td>
+                                            <td class="p-1 align-middle text-center" style="max-width: 6rem;"><img class="img-fluid" src="@path@admin.QR" /></td>
+                                            <td class="p-1 align-middle text-nowrap">@admin.CreatedAt.ToString("F")</td>
+                                            <td class="p-1 align-middle text-nowrap">@admin.UpdatedAt.ToString("F")</td>
+                                            <td class="p-1 align-middle">
+                                                <a type="button" class="btn btn-warning" asp-controller="Account" asp-route-id="@admin.Id" asp-action="Edit">Edit</a>
+                                                <button type="button" class="btn btn-danger" data-type="delete" asp-controller="Account" asp-action="Delete" asp-route-id="@admin.Id">Delete</button>
+                                                <a type="button" class="btn btn-outline-dark" asp-controller="Account" asp-route-id="@admin.Id" asp-action="Profile">Profile</a>
+                                            </td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger">
+                            There Is No Patients
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Row -->
+</div>
+
+@section Scripts {
+
+}

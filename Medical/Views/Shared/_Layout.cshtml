@@ -1,0 +1,55 @@
+﻿@using Medical.Repositories
+@using Medical.Specifications.ApplicationUser_
+@inject ApplicationUserRepo _repo
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Medical</title>
+
+    <link href="~/css/styles.min.css" rel="stylesheet" />
+    <link href="~/lib/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    @{
+        var user = await _repo.GetAsync(new ApplicationUserSpecifications(new() { Search = new() { UserName = User.Identity.Name } }));
+    }
+    <!--  Body Wrapper -->
+    <div class="page-wrapper"
+         id="main-wrapper"
+         data-layout="vertical"
+         data-navbarbg="skin6"
+         data-sidebartype="full"
+         data-sidebar-position="fixed"
+         data-header-position="fixed">
+
+        <partial name="__Layout/_sideBar" model="@user?.Id"/>
+
+        <!--  Main wrapper -->
+        <div class="body-wrapper">
+            <!--  Header Start -->
+            <partial name="__Layout/_header" model="@user" />
+            <!--  Header End -->
+
+            <div class="container-fluid min-vh-100 bg-light">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/app.min.js"></script>
+    <script src="~/lib/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="~/js/simplebar.min.js"></script>
+    <script src="~/js/dashboard.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

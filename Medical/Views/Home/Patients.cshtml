@@ -1,0 +1,254 @@
+﻿@model ApplicationUser
+@inject IConfiguration _config
+@{
+    var path = $"{_config["baseUrl"]}/{_config["images:load"]}/";
+    var pathFiles = $"{_config["baseUrl"]}/{_config["reports:load"]}/";
+    ViewBag.ActiveItem = "Home";
+    ViewData["Title"] = "Home";
+
+}
+
+<div class="page-header w-100 border-start ps-2 border-3 border-primary my-4">
+    <div class="">
+        <div class="page-title text-start fs-6 fw-bolder">Patient<span class="fw-normal text-muted ms-2">Home</span></div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="">
+        <div class="card">
+            <div class="card-body row align-items-center">
+                <div class="col-4 col-sm-3 col-lg-2">
+                    <div class="image-placeholder @(string.IsNullOrEmpty(Model.ImagePath) ?  "placeholder":"") position-relative">
+                        @if (!string.IsNullOrEmpty(Model.ImagePath))
+                        {
+                            <img src="@path@Model.ImagePath" class="img-fluid" alt="Profile Image">
+                        }
+                        <span class="position-absolute botton-0 start-100 translate-middle p-1 bg-success border border-2 border-light rounded-circle">
+                            <span class="visually-hidden">Status</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <h4 class="fw-bolder d-flex align-items-center gap-2">
+                        @Model.Name
+                        <i class="ti ti-circle-check text-success fs-2"></i>
+                    </h4>
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="ti ti-inbox me-2"></i>
+                        <div class="h6 mb-0">@Model.Email</div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="ti ti-phone me-2"></i>
+                        <div class="h6 mb-0">@Model.PhoneNumber</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Profile Tabs -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs" id="profile-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="about-tab" data-bs-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="true">About</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content" id="profile-tabs-content">
+                    <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
+                        <h5 class="fw-bold">Medical Records</h5>
+                        @if (Model.Medicals != null)
+                        {
+                            <div class="main-profile-bio mb-0">
+                                @if (Model.Medicals.Any(m => m.Type == "Radiation"))
+                                {
+                                    <h6>Radiations</h6>
+                                    <ul class="list-group">
+                                        @foreach (var record in Model.Medicals.Where(m => m.Type == "Radiation"))
+                                        {
+                                            <li class="list-group-item">
+                                                <div class="d-flex flex-column gap-2">
+                                                    @if (!string.IsNullOrEmpty(record.Text))
+                                                    {
+                                                        <span>@record.Text</span>
+                                                    }
+
+                                                    @if (!string.IsNullOrEmpty(record.FileName))
+                                                    {
+                                                        <a href="@pathFiles@record.FileName" download="@($"{record.Type}.{record.FileName.Split('.').Last()}")" class="btn btn-primary" style="max-width: fit-content;">
+                                                            <i class="ti ti-file">Download Report!</i>
+                                                        </a>
+                                                    }
+                                                    <div class="text-muted d-flex flex-column flex-md-row align-items-md-center gap-2">
+                                                        <span>Created At:</span>
+                                                        <span class="fw-bold text-secondary">@record.CreatedAt.ToString("F")</span>
+                                                    </div>
+                                                    <div class="text-muted d-flex flex-column flex-md-row align-items-md-center gap-2">
+                                                        <span>Last Update At:</span>
+                                                        <span class="fw-bold text-secondary">@record.UpdatedAt.ToString("F")</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <hr class="my-2 text-primary" />
+                                        }
+                                    </ul>
+                                }
+                                @if (Model.Medicals.Any(m => m.Type == "Test"))
+                                {
+                                    <div class="text-secondary my-3">
+                                        <hr>
+                                    </div>
+
+                                    <h6>Tests</h6>
+                                    <ul class="list-group">
+                                        @foreach (var record in Model.Medicals.Where(m => m.Type == "Test"))
+                                        {
+                                            <li class="list-group-item">
+                                                <div class="d-flex flex-column gap-2">
+                                                    @if (!string.IsNullOrEmpty(record.Text))
+                                                    {
+                                                        <span>@record.Text</span>
+                                                    }
+                                                    @if (!string.IsNullOrEmpty(record.FileName))
+                                                    {
+                                                        <a href="@pathFiles@record.FileName" download="@($"{record.Type}.{record.FileName.Split('.').Last()}")" class="btn btn-primary" style="max-width: fit-content;">
+                                                            <i class="ti ti-file">Download Report!</i>
+                                                        </a>
+                                                    }
+                                                    <div class="text-muted d-flex flex-column flex-md-row align-items-md-center gap-2">
+                                                        <span>Created At:</span>
+                                                        <span class="fw-bold text-secondary">@record.CreatedAt.ToString("F")</span>
+                                                    </div>
+                                                    <div class="text-muted d-flex flex-column flex-md-row align-items-md-center gap-2">
+                                                        <span>Last Update At:</span>
+                                                        <span class="fw-bold text-secondary">@record.UpdatedAt.ToString("F")</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <hr class="my-2 text-primary" />
+                                        }
+                                    </ul>
+                                }
+                                @if (Model.Medicals.Any(m => m.Type == "Medication"))
+                                {
+                                    <div class="text-secondary my-3">
+                                        <hr>
+                                    </div>
+
+                                    <h6>Medications</h6>
+                                    <ul class="list-group">
+                                        @foreach (var record in Model.Medicals.Where(m => m.Type == "Medication"))
+                                        {
+                                            <li class="list-group-item">
+                                                <div class="d-flex flex-column gap-2">
+                                                    @if (!string.IsNullOrEmpty(record.Text))
+                                                    {
+                                                        <span>@record.Text</span>
+                                                    }
+                                                    @if (!string.IsNullOrEmpty(record.FileName))
+                                                    {
+                                                        <a href="@pathFiles@record.FileName" download="@($"{record.Type}.{record.FileName.Split('.').Last()}")" class="btn btn-primary" style="max-width: fit-content;">
+                                                            <i class="ti ti-file">Download Report!</i>
+                                                        </a>
+                                                    }
+                                                    <div class="text-muted d-flex flex-column flex-md-row align-items-md-center gap-2">
+                                                        <span>Created At:</span>
+                                                        <span class="fw-bold text-secondary">@record.CreatedAt.ToString("F")</span>
+                                                    </div>
+                                                    <div class="text-muted d-flex flex-column flex-md-row align-items-md-center gap-2">
+                                                        <span>Last Update At:</span>
+                                                        <span class="fw-bold text-secondary">@record.UpdatedAt.ToString("F")</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <hr class="my-2 text-primary" />
+                                        }
+                                    </ul>
+                                }
+                                @if (Model.Medicals.Any(m => m.Type == "Examination"))
+                                {
+                                    <div class="text-secondary my-3">
+                                        <hr>
+                                    </div>
+
+                                    <h6>Examinations</h6>
+                                    <ul class="list-group">
+                                        @foreach (var record in Model.Medicals.Where(m => m.Type == "Examination"))
+                                        {
+                                            <li class="list-group-item">
+                                                <div class="d-flex flex-column gap-2">
+                                                    @if (!string.IsNullOrEmpty(record.Text))
+                                                    {
+                                                        <span>@record.Text</span>
+                                                    }
+                                                    @if (!string.IsNullOrEmpty(record.FileName))
+                                                    {
+                                                        <a href="@pathFiles@record.FileName" download="@($"{record.Type}.{record.FileName.Split('.').Last()}")" class="btn btn-primary" style="max-width: fit-content;">
+                                                            <i class="ti ti-file">Download Report!</i>
+                                                        </a>
+                                                    }
+                                                    <div class="text-muted d-flex flex-column flex-md-row align-items-md-center gap-2">
+                                                        <span>Created At:</span>
+                                                        <span class="fw-bold text-secondary">@record.CreatedAt.ToString("F")</span>
+                                                    </div>
+                                                    <div class="text-muted d-flex flex-column flex-md-row align-items-md-center gap-2">
+                                                        <span>Last Update At:</span>
+                                                        <span class="fw-bold text-secondary">@record.UpdatedAt.ToString("F")</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <hr class="my-2 text-primary" />
+                                        }
+                                    </ul>
+                                }
+
+                                @if (Model.Medicals.Any(m => m.Type == "Disease"))
+                                {
+                                    <div class="text-secondary my-3">
+                                        <hr>
+                                    </div>
+
+                                    <h6>Diseases</h6>
+                                    <ul class="list-group">
+                                        @foreach (var record in Model.Medicals.Where(m => m.Type == "Disease"))
+                                        {
+                                            <li class="list-group-item">
+                                                <div class="d-flex flex-column gap-2">
+                                                    @if (!string.IsNullOrEmpty(record.Text))
+                                                    {
+                                                        <span>@record.Text</span>
+                                                    }
+                                                    @if (!string.IsNullOrEmpty(record.FileName))
+                                                    {
+                                                        <a href="@pathFiles@record.FileName" download="@($"{record.Type}.{record.FileName.Split('.').Last()}")" class="btn btn-primary" style="max-width: fit-content;">
+                                                            <i class="ti ti-file">Download Report!</i>
+                                                        </a>
+                                                    }
+                                                    <div class="text-muted d-flex flex-column flex-md-row align-items-md-center gap-2">
+                                                        <span>Created At:</span>
+                                                        <span class="fw-bold text-secondary">@record.CreatedAt.ToString("F")</span>
+                                                    </div>
+                                                    <div class="text-muted d-flex flex-column flex-md-row align-items-md-center gap-2">
+                                                        <span>Last Update At:</span>
+                                                        <span class="fw-bold text-secondary">@record.UpdatedAt.ToString("F")</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <hr class="my-2 text-primary" />
+                                        }
+                                    </ul>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

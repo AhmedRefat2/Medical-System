@@ -1,0 +1,151 @@
+@use '../../utils' as *;
+
+.about-us {
+
+  &__space {
+    padding-top: 160px;
+    padding-bottom: 155px;
+  }
+
+  &__content {
+    h2 {
+      max-width: 591px;
+
+      @media #{$lg, $md, $sm, $xs} {
+        max-width: 100%;
+      }
+    }
+
+    .skill-one__progress {
+      position: relative;
+      display: block;
+      width: 100%;
+
+      &-single {
+        position: relative;
+        display: block;
+        margin-bottom: 27px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      .bar {
+        position: relative;
+        width: 100%;
+        height: 1px;
+        background: #E4E5E5;
+        border-radius: 0px;
+        margin-bottom: 0;
+      }
+
+      .bar-inner {
+        position: relative;
+        display: block;
+        width: 0px;
+        height: 1px;
+        border-radius: 0px;
+        transition: all 1500ms ease;
+        background: var(--rr-theme-primary);
+      }
+
+      .count-text {
+        position: absolute;
+        top: -37px;
+        right: 0px;
+        transition: all 500ms ease;
+        opacity: 1;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 28px;
+        color: var(--rr-color-900);
+      }
+    }
+  }
+
+  &__media {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    margin-top: -40px;
+    gap: 30px;
+
+    @media #{$lg, $md, $sm, $xs} {
+      margin-top: 10px;
+    }
+
+    @media #{$xs, $sm, $md} {
+      gap: 15px;
+      padding-top:45px;
+      padding-bottom: 0;
+    }
+
+    &-experience-box {
+      position: relative;
+      z-index: 4;
+      padding: 18px 28px;
+      background: var(--rr-common-white);
+      border: 0.951667px solid #E4E5E5;
+      @include border-radius(20px);
+      gap: 28px;
+
+      p {
+        max-width: 81px;
+        color: var(--rr-color-900);
+      }
+    }
+
+    &-big-shape {
+      position: absolute;
+      @media #{ $md, $sm, $xs} {
+        display: none;
+      }
+    }
+
+    &-img {
+      margin-top: 40px;
+      position: relative;
+      z-index: 1;
+
+      @media #{$xs} {
+        margin-top: 0;
+      }
+
+      img {
+        overflow: hidden;
+        @include border-radius(20px);
+        @media #{ $md, $sm, $xs} {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .shape {
+        z-index: 2;
+        position: absolute;
+        @include border-radius(0);
+        @media #{ $md, $sm, $xs} {
+          display: none;
+        }
+      }
+
+      &.img1 {
+        padding-top: 65px;
+        @media #{$xs} {
+          padding-top:0;
+        }
+
+        .shape {
+          bottom: 20px;
+          left: 0;
+        }
+      }
+      &.img2 .shape {
+        right: 20px;
+        top: -40px;
+      }
+    }
+  }
+}

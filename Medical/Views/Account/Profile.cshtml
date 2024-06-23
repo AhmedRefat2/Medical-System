@@ -1,0 +1,103 @@
+﻿@model ApplicationUserVM
+@inject IConfiguration _config
+
+@{
+    ViewBag.ActiveItem = "Profile";
+    ViewData["Title"] = $"{Model.Name} Profile";
+
+    var pathImages = $"{_config["baseUrl"]}/{_config["images:load"]}/";
+    var pathFiles = $"{_config["baseUrl"]}/{_config["reports:load"]}/";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">User Profile</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    @if (Model.UserRole == UserRole.Doctor)
+                    {
+                        <div class="col-12 mb-3">
+                            <div class="form-group d-flex gap-2">
+                                <label>Specification:</label>
+                                <p class="form-control-static fw-bolder">@Model.Specification</p>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label>Profile Picture:</label><br />
+                            <img src="@(!string.IsNullOrEmpty(Model.QrCodeUrl)?$"{pathImages}{Model.ImageUrl}":"")" class="img-fluid" alt="Profile Picture" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label>QR Code:</label><br />
+                            <img src="@(!string.IsNullOrEmpty(Model.QrCodeUrl)?$"{pathImages}{Model.QrCodeUrl}":"")" class="img-fluid" alt="QR Code" style="max-width:10rem;" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label>Name:</label>
+                            <p class="form-control-static fw-bolder">@Model.Name</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label>User Name:</label>
+                            <p class="form-control-static fw-bolder">@Model.UserName</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <p class="form-control-static fw-bolder">@Model.Email</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label>National ID:</label>
+                            <p class="form-control-static fw-bolder">@Model.NationalId</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label>Address:</label>
+                            <p class="form-control-static fw-bolder">@Model.Address</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label>Gender:</label>
+                            <p class="form-control-static fw-bolder">@Model.Gender.ToString()</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label>Phone Number:</label>
+                            <p class="form-control-static fw-bolder">@Model.PhoneNumber</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label>Birth Date:</label>
+                            <p class="form-control-static fw-bolder">@(Model?.BirthDate.ToString() ?? "None")</p>
+                        </div>
+                    </div>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="col-12">
+                            <a type="button" class="btn btn-warning" asp-controller="Account" asp-route-id="@Model.Id" asp-action="Edit">Edit</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+﻿@model HomeAdminsVM
+@{
+    ViewData["Title"] = "Home Page";
+    ViewBag.ActiveItem = "Home";
+
+}
+
+
+<div class="page-header w-100 border-start ps-2 border-3 border-primary my-4">
+    <div class="">
+        <div class="page-title text-start fs-6 fw-bolder">Admins<span class="fw-normal text-muted ms-2">Dashboard</span></div>
+    </div>
+</div>
+
+<!-- contaner of form add clients -->
+<div class="row">
+    <div class="col-lg-4 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <div class="mt-0 text-start">
+                            <span class="fs-4 fw-semibold">Total Admins</span>
+                            <h3 class="mb-0 mt-1 mb-2">@Model.TotalAdmins</h3>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="bg-success d-flex justify-content-center align-items-center p-4 px-5 rounded-2 text-light">
+                            <i class="ti ti-users" style="font-size:25px;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="mt-0 text-start">
+                            <span class="fs-4 fw-semibold">Total Doctors</span>
+                            <h3 class="mb-0 mt-1 mb-2">@Model.TotalDoctors</h3>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="bg-primary d-flex justify-content-center align-items-center p-4 px-5 rounded-2 text-light">
+                            <i class="ti ti-users" style="font-size:25px;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="mt-0 text-start">
+                            <span class="fs-4 fw-semibold">Total Patients</span>
+                            <h3 class="mb-0 mt-1 mb-2">@Model.TotalPatients</h3>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="bg-danger d-flex justify-content-center align-items-center p-4 px-5 rounded-2 text-light">
+                            <i class="ti ti-users" style="font-size:25px;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

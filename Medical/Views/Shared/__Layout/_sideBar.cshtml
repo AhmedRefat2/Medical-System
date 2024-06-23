@@ -1,0 +1,79 @@
+﻿@using Medical.Data.Entities
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> _signManager;
+@inject IConfiguration _config
+@model int
+
+<!-- Sidebar Start -->
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+            <a href="" class="text-nowrap logo-img">
+                <img src="@_config["baseUrl"]/images/brand/logo.png" width="100" alt="" />
+            </a>
+            <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer"
+                 id="sidebarCollapse">
+                <i class="ti ti-x fs-8"></i>
+            </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar mt-4" data-simplebar="">
+            <ul id="sidebarnav">
+                <li class="sidebar-item">
+                    <a class="sidebar-link @(ViewBag.ActiveItem == "Home" ? "active" : "")"
+                       asp-controller="Home"
+                       asp-action="Index"
+                       aria-expanded="false">
+                        <span><i class="ti ti-layout-grid"></i></span>
+                        <span class="hide-menu" data-translate="Dashboard">Home</span>
+                    </a>
+                </li>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="sidebar-item">
+                        <a class="sidebar-link @(ViewBag.ActiveItem == "Admins" ? "active" : "")"
+                           asp-action="Index"
+                           asp-controller="Admins"
+                           aria-expanded="false">
+                            <span><i class="ti ti-users"></i></span>
+                            <span class="hide-menu" data-translate="Admins">Admins</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link @(ViewBag.ActiveItem == "Doctors" ? "active" : "")"
+                           asp-controller="Doctors"
+                           asp-action="Index"
+                           aria-expanded="false">
+                            <span><i class="ti ti-user"></i></span>
+                            <span class="hide-menu" data-translate="Doctors">Doctors</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link @(ViewBag.ActiveItem == "Patients" ? "active" : "")"
+                           asp-action="Index"
+                           asp-controller="Patients"
+                           aria-expanded="false">
+                            <span><i class="ti ti-user"></i></span>
+                            <span class="hide-menu" data-translate="Patients">Patients</span>
+                        </a>
+                    </li>
+                }
+                <li class="sidebar-item">
+                    <a class="sidebar-link @(ViewBag.ActiveItem == "Profile" ? "active" : "")"
+                       asp-action="Profile"
+                       asp-controller="Account"
+                       asp-route-id="@Model"
+                       aria-expanded="false">
+                        <span><i class="ti ti-file-invoice"></i></span>
+                        <span class="hide-menu">Profile</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>
+<!-- Sidebar End -->

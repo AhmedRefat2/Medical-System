@@ -1,0 +1,115 @@
+﻿@model IEnumerable<ApplicationUserVM>
+@inject IConfiguration config
+
+@{
+    ViewData["Title"] = "Home Page";
+    ViewBag.ActiveItem = "Home";
+
+}
+
+
+<div class="page-header w-100 border-start ps-2 border-3 border-primary my-4">
+    <div class="">
+        <div class="page-title text-start fs-6 fw-bolder">Doctors<span class="fw-normal text-muted ms-2">Dashboard</span></div>
+    </div>
+</div>
+
+<!-- contaner of form add clients -->
+<div class="row">
+    <div class="col-12">
+        <form asp-action="Search" asp-controller="Doctors" id="searchForm">
+            <div class="input-group bg-white mb-3">
+                <input type="text"
+                       name="nationalid"
+                       class="form-control py-3"
+                       placeholder="Search by National ID"
+                       aria-label="National ID"
+                       aria-describedby="button-addon2"
+                       required
+                       maxlength="14" />
+                <button class="btn btn-primary" type="submit" id="button-addon2">
+                    Search
+                </button>
+                <button class="btn btn-secondary"
+                        type="reset">
+                    Reset
+                </button>
+            </div>
+        </form>
+
+
+        @{
+            var path = $"{config["baseUrl"]}/{config["images:load"]}/";
+        }
+
+        @if (Model != null && Model.Any())
+        {
+            <!-- Row -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="responsive">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-nowrap">Id</th>
+                                            <th class="text-nowrap">Name</th>
+                                            <th class="text-nowrap">Phone Number</th>
+                                            <th class="text-nowrap">E-mail</th>
+                                            <th class="text-nowrap">National ID</th>
+                                            <th class="text-nowrap">Picture</th>
+                                            <th class="text-nowrap">QR Code</th>
+                                            <th class="text-nowrap">Created At</th>
+                                            <th class="text-nowrap">Last Updated At</th>
+                                            <th class="text-nowrap">Controls</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var patient in Model)
+                                        {
+                                            <tr class="text-center">
+                                                <td class="p-1 align-middle">@patient.Id</td>
+                                                <td class="p-1 align-middle">@patient.Name</td>
+                                                <td class="p-1 align-middle">@patient.PhoneNumber</td>
+                                                <td class="p-1 align-middle">@patient.Email</td>
+                                                <td class="p-1 align-middle">@patient.NationalId</td>
+                                                <td class="p-1 align-middle text-center" style="max-width: 4rem;"><img class="img-fluid" src="@path@patient.ImageUrl" /></td>
+                                                <td class="p-1 align-middle text-center" style="max-width: 6rem;"><img class="img-fluid" src="@path@patient.QrCodeUrl" /></td>
+                                                <td class="p-1 align-middle text-nowrap">@patient.CreatedAt.ToString("F")</td>
+                                                <td class="p-1 align-middle text-nowrap">@patient.UpdatedAt.ToString("F")</td>
+
+                                                <td class="p-1 align-middle">
+                                                    <div class=" d-flex gap-2 align-items-center">
+                                                        <a type="button" class="btn btn-dark text-nowrap" target="_blank" asp-controller="PatientMedicals" asp-route-patientId="@patient.Id" asp-action="Index">Medical History</a>
+                                                        <a type="button" class="btn btn-outline-dark" target="_blank" asp-controller="Account" asp-route-id="@patient.Id" asp-action="Profile">Profile</a>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else if (!string.IsNullOrEmpty(ViewBag.patientNationalID))
+        {
+            <div class="alert alert-warning">
+                No patients found with National ID: @ViewBag.patientNationalID
+            </div>
+        }
+
+    </div>
+</div>
+
+<script>
+    function resetForm() {
+        document.getElementById("searchForm").reset();
+        window.location.href = window.location.pathname; // Reload the page without query parameters
+    }
+</script>
+

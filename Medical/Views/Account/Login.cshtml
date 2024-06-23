@@ -1,0 +1,80 @@
+﻿@model LoginVM
+@inject IConfiguration _config
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="~/lib/tabler-icons/tabler-icons.css" rel="stylesheet" />
+    <link href="~/css/login.css" rel="stylesheet" />
+</head>
+<body>
+
+	<div class="page responsive-log relative error-page3">
+		<div class="row no-gutters">
+			<div class="col-xl-6 d-xl-block d-none log-image1">
+				<div class="cover-image h-100vh" style="background: url(@_config["baseUrl"]/images/photos/bg-img5.jpeg) center center;" >
+					<div class="container">
+						<div class="customlogin-imgcontent">
+							<h1 class="mb-3 fs-35 text-dark">Welcome To Medical</h1>
+							<h2 class="text-dark-50">your helth is our concern .</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-6 bg-white log-image1">
+				<div class="container">
+					<div class="customlogin-content pt-5 pt-xl-9">
+						<div class="pt-4 pb-2 ps-2 w-25">
+							<a class="header-brand" asp-action="Index" asp-controller="Home">
+								<img src="@_config["baseUrl"]\images\brand\logo.png" class="header-brand-img custom-logo" alt="Medicallogo" />
+								<img src="@_config["baseUrl"]\images\brand\logo.png" class="header-brand-img custom-logo-dark " alt="Medicallogo">
+							</a>
+						</div>
+						<div class="p-4 pt-6">
+							<h1 class="mb-2">Login</h1>
+							<p class="text-muted">Sign In to your account</p>
+						</div>
+						<form asp-action="Login" asp-controller="Account" class="card-body pt-3">
+							@if (!ViewData.ModelState.IsValid)
+							{
+								<div class="alert alert-danger" asp-validation-summary="All"></div>
+							}
+							<div class="form-group">
+								<label class="form-label"> Username</label>
+								<div class="input-group mb-4">
+									<div class="input-group">
+										<a class="input-group-text"><i class="ti ti-user" aria-hidden="true"></i></a>
+										<input class="form-control" asp-for="UserName" placeholder="username">
+									</div>
+										<span asp-validation-for="UserName" class="text-danger" ></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="form-label">Password</label>
+								<div class="input-group mb-4">
+									<div class="input-group" id="Password-toggle">
+										<span class="input-group-text">
+											<i class="ti ti-eye-off" aria-hidden="true"></i>
+										</span>
+										<input class="form-control" asp-for="Password" placeholder="Password" />
+									</div>
+										<span asp-validation-for="UserName" class="text-danger"></span>
+								</div>
+							</div>
+							<button type="submit" class="btn btn-primary btn-block">Login</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

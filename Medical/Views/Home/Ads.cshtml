@@ -1,0 +1,666 @@
+﻿@inject SignInManager<ApplicationUser> _signInUser
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Medilix - Healthcare & Medical Bootstrap HTML5 Template</title>
+    <meta name="description"
+          content="Medilix - Healthcare & Medical Bootstrap HTML5 Template" />
+    <meta name="author" content="ahmmedsabbirbd" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="shortcut icon"
+          type="image/x-icon"
+          href="~/front-end_files/imgs/favicon.svg" />
+
+    <!-- CSS here -->
+    <link href="~/front-end_files/css/vendor/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/front-end_files/css/vendor/animate.min.css" rel="stylesheet" />
+    <link href="~/front-end_files/css/plugins/swiper.min.css" rel="stylesheet" />
+    <link href="~/front-end_files/css/vendor/magnific-popup.css" rel="stylesheet" />
+    <link href="~/front-end_files/css/vendor/fontawesome-pro.css" rel="stylesheet" />
+    <link href="~/front-end_files/css/vendor/spacing.css" rel="stylesheet" />
+    <link href="~/front-end_files/css/plugins/odometer-theme-default.css" rel="stylesheet" />
+    <link href="~/front-end_files/css/main.css" rel="stylesheet" />
+    <style>
+        .about-us-3__content__list h5 {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body class="body-3">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+    <!-- preloader start -->
+    <div id="preloader">
+        <div class="preloader-close">x</div>
+        <div class="sk-three-bounce">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+    <!-- preloader end -->
+    <!-- preloader start -->
+    <div class="loading-form">
+        <div class="sk-three-bounce">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+    <!-- preloader end -->
+    <!-- Backtotop start -->
+    <div id="scroll-percentage">
+        <span id="scroll-percentage-value"></span>
+    </div>
+    <!-- Backtotop end -->
+    <!-- Offcanvas area start -->
+    <div class="fix">
+        <div class="offcanvas__area">
+            <div class="offcanvas__wrapper">
+                <div class="offcanvas__content">
+                    <div class="offcanvas__top d-flex justify-content-between align-items-center">
+                        <div class="offcanvas__logo">
+                            <a asp-action="Ads">
+                                <img src="~/front-end_files/imgs/logo/logo-white.svg"
+                                     alt="logo not found" />
+                            </a>
+                        </div>
+                        <div class="offcanvas__close">
+                            <button class="offcanvas-close-icon animation--flip">
+                                <span class="offcanvas-m-lines">
+                                    <span class="offcanvas-m-line line--1"></span><span class="offcanvas-m-line line--2"></span><span class="offcanvas-m-line line--3"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mobile-menu fix"></div>
+                    <div class="offcanvas__social">
+                        <h4 class="offcanvas__title mb-20">Subscribe & Follow</h4>
+                        <p class="mb-30">
+                            Medical practices evolved over millennia, from ancient
+                            civilizations like Egypt and Mesopotamia to the groundbreaking
+                        </p>
+                        <ul class="header-top-socail-menu d-flex">
+                            <li>
+                                <a href="https://www.facebook.com/">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.pinterest.com/">
+                                    <i class="fa-brands fa-pinterest-p"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://vimeo.com/">
+                                    <i class="fa-brands fa-vimeo-v"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="offcanvas__btn d-sm-none">
+                        <div class="header__btn-wrap">
+                            <a href="https://themeforest.net/user/rrdevs/portfolio"
+                               class="rr-btn rr-btn__theme rr-btn__theme-white mt-40 mt-sm-35 mt-xs-30">
+                                <span class="btn-wrap">
+                                    <span class="text-one">Purchase Now</span>
+                                    <span class="text-two">Purchase Now</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas__overlay"></div>
+    <div class="offcanvas__overlay-white"></div>
+    <!-- Offcanvas area start -->
+    <!-- Header area start -->
+    <header>
+        <div id="header-sticky" class="header__area header-3">
+            <div class="container">
+                <div class="mega__menu-wrapper p-relative">
+                    <div class="header__main">
+                        <div class="header__left d-flex align-items-center w-100">
+                            <div class="header__logo">
+                                <a asp-action="Ads">
+                                    <div class="logo">
+                                        <img src="~/front-end_files/imgs/medlogo.png"
+                                             alt="logo not found"
+                                             width="100" />
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="mean__menu-wrapper d-none d-lg-block w-100">
+                                <div class="main-menu onepagenav">
+                                    <nav id="mobile-menu" class="d-flex align-items-center justify-content-between">
+                                        <ul>
+                                            <li class="active"><a href="#banner">Home</a></li>
+                                            <li><a href="#service">Services</a></li>
+                                            <li><a href="#why-choose-us">Why choose us ?</a></li>
+                                            <li><a href="#about-us">Join Us</a></li>
+                                        </ul>
+                                        @if (_signInUser.IsSignedIn(User))
+                                        {
+                                            <a asp-action="Index" asp-controller="Home" class="btn btn-outline-primary fs-4">Home</a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Login" asp-controller="Account" class="btn btn-primary fs-4">Login</a>
+                                        }
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="header__right">
+                            <div class="header__action d-flex align-items-center">
+                                <!-- <div class="header__btn-wrap d-none d-sm-inline-flex">
+                                              <a href="appoinment.html" class="rr-btn rr-btn__primary-color">
+                                                  <span class="btn-wrap">
+                                                      <span class="text-one">Get Appointment</span>
+                                                      <span class="text-two">Get Appointment</span>
+                                                  </span>
+                                              </a>
+                                          </div> -->
+
+                                <div class="header__hamburger ml-20 d-xl-none">
+                                    <div class="sidebar__toggle">
+                                        <a class="bar-icon" href="javascript:void(0)">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header area end -->
+    <!-- Body main wrapper start -->
+    <main class="home-3__background overflow-hidden">
+        <!--home-2__background you can remove any time-->
+        <!-- Banner area start -->
+        <section id="banner" class="banner-3 banner-3__space overflow-hidden">
+            <div class="container">
+                <div class="banner-3__shape"></div>
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <div class="banner-3__content">
+                            <h1 class="mb-0 title-animation">
+                                Welcom to <span>Patient's Insight!</span>
+                            </h1>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="banner-3__content mt-md-30 mt-sm-30 mt-xs-30">
+                            <p class="mb-0">
+                                We are here to provide you with smart solutions for managing
+                                your health. Our site offers comprehensive services aimed at
+                                facilitating healthcare and accessing accurate medical
+                                information.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper banner-3__slider mt-65 mt-xs-50">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="banner-3__item position-relative overflow-hidden">
+                            <div class="panel wow"></div>
+                            <div class="banner-3__item-media">
+                                <img class="img-fluid"
+                                     src="~/front-end_files/imgs/banner-3/banner-1.png"
+                                     alt="icon not found" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="banner-3__item position-relative overflow-hidden">
+                            <div class="panel wow"></div>
+                            <div class="banner-3__item-media">
+                                <img class="img-fluid"
+                                     src="~/front-end_files/imgs/banner-3/banner-2.png"
+                                     alt="icon not found" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="banner-3__item position-relative overflow-hidden">
+                            <div class="panel wow"></div>
+                            <div class="banner-3__item-media">
+                                <img class="img-fluid"
+                                     src="~/front-end_files/imgs/banner-3/banner-3.png"
+                                     alt="icon not found" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="banner-3__pagination"></div>
+            </div>
+        </section>
+        <!-- Banner area end -->
+        <!-- service-2 area start -->
+        <section id="service" class="service-2 section-space">
+            <div class="container">
+                <div class="row mb-60 mb-xs-50 align-items-lg-end align-items-center">
+                    <div class="col-lg-6">
+                        <div class="section__title-wrapper mb-md-30 mb-mb-30 mb-xs-30">
+                            <h5 class="section__subtitle color-theme-primary mb-15 mb-xs-10 title-animation">
+                                <img src="~/front-end_files/imgs/ask-quesiton/heart.png"
+                                     alt="icon not found"
+                                     class="img-fluid" />
+                                Our Services
+                            </h5>
+                            <h2 class="section__title mb-0 text-capitalize title-animation">
+                                Patient's Insight Medical Services
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="service-2__slider__arrow d-flex justify-content-lg-end justify-content-start">
+                            <button class="service-2__slider__arrow-prev d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </button>
+
+                            <button class="service-2__slider__arrow-next d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="swiper service-2__slider mb-minus-60">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="service-2__item">
+                                        <a asp-action="ServiceDetails" asp-route-id="2"
+                                           class="service-2__item-media">
+                                            <img class="img-fluid"
+                                                 src="~/front-end_files/imgs/service-2/service-1.jpg"
+                                                 alt="image not found" />
+                                        </a>
+
+                                        <div class="service-2__item-content">
+                                            <h4 class="mb-20 mb-xs-15 d-flex align-items-start">
+                                                <a asp-action="ServiceDetails" asp-route-id="2">
+                                                    <img class="img-fluid mr-15"
+                                                         src="~/front-end_files/imgs/service-2/service-icon-1.png"
+                                                         alt="icon not found" />
+                                                    Personal Medical Record
+                                                </a>
+                                            </h4>
+
+                                            <p>
+                                                With Patient's Insight, you can now store all your
+                                                health data in one place. Whether you need to review
+                                                your medical history, test results, or prescriptions,
+                                                your personal medical record allows you to access all
+                                                this information easily and securely.
+                                            </p>
+
+                                            <!-- <a class="rr-a-btn mt-30 mt-xs-25 d-block"  asp-action="ServiceDetails" asp-route-id="2">Read More <i class="fa-solid fa-circle-plus"></i></a> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="service-2__item">
+                                        <a asp-action="ServiceDetails" asp-route-id="2"
+                                           class="service-2__item-media">
+                                            <img class="img-fluid"
+                                                 src="~/front-end_files/imgs/service-2/service-2.jpg"
+                                                 alt="image not found" />
+                                        </a>
+
+                                        <div class="service-2__item-content">
+                                            <h4 class="mb-20 mb-xs-15 d-flex align-items-start">
+                                                <a asp-action="ServiceDetails" asp-route-id="2">
+                                                    <img class="img-fluid mr-15"
+                                                         src="~/front-end_files/imgs/service-2/service-icon-2.png"
+                                                         alt="icon not found" />
+                                                    Initial Diagnosis via ChatAI
+                                                </a>
+                                            </h4>
+
+                                            <p>
+                                                We offer you advanced technology for initial diagnosis
+                                                through ChatAI. You can talk to our intelligent
+                                                assistant, who will ask the appropriate questions
+                                                based on the symptoms you're experiencing and provide
+                                                you with a preliminary diagnosis and guidance on the
+                                                next steps.
+                                            </p>
+
+                                            <!-- <a class="rr-a-btn mt-30 mt-xs-25 d-block"  asp-action="ServiceDetails" asp-route-id="2">Read More <i class="fa-solid fa-circle-plus"></i></a> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="service-2__item">
+                                        <a asp-action="ServiceDetails" asp-route-id="2"
+                                           class="service-2__item-media">
+                                            <img class="img-fluid"
+                                                 src="~/front-end_files/imgs/service-2/service-3.jpg"
+                                                 alt="image not found" />
+                                        </a>
+
+                                        <div class="service-2__item-content">
+                                            <h4 class="mb-20 mb-xs-15 d-flex align-items-start">
+                                                <a asp-action="ServiceDetails" asp-route-id="2">
+                                                    <img class="img-fluid mr-15"
+                                                         src="~/front-end_files/imgs/service-2/service-icon-3.png"
+                                                         alt="icon not found" />Customized Health Notifications
+                                                </a>
+                                            </h4>
+
+                                            <p>
+                                                You will receive customized notifications that remind
+                                                you of medication schedules, upcoming medical
+                                                appointments, and health guidelines based on your
+                                                health condition.
+                                            </p>
+
+                                            <!-- <a class="rr-a-btn mt-30 mt-xs-25 d-block"  asp-action="ServiceDetails" asp-route-id="2">Read More <i class="fa-solid fa-circle-plus"></i></a> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- service-2 area end -->
+        <!-- why-choose-us area start -->
+        <section class="why-choose-us" id="why-choose-us">
+            <div class="why-choose-us__shap">
+                <img src="~/front-end_files/imgs/why-choose-us/why-choose-us-shap-2.png"
+                     alt="" />
+            </div>
+            <div class="container">
+                <div class="row d-flex align-items-center">
+                    <div class="col-lg-4">
+                        <div class="why-choose-us__content">
+                            <div class="section__title-wrapper mb-10">
+                                <h5 class="section__subtitle color-theme-primary mb-15 mb-xs-10 title-animation">
+                                    <img src="~/front-end_files/imgs/ask-quesiton/heart.png"
+                                         alt="icon not found"
+                                         class="img-fluid" />Why Choose Us
+                                </h5>
+                                <h2 class="section__title mb-0 text-capitalize title-animation">
+                                    Embrace Wellness Your Gateway
+                                </h2>
+                            </div>
+                            <!-- <p class="mb-40">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet rcus nunc. Duis egestas  ante sed tincidunt Making the world talk about you</p> -->
+                            <!-- <a href="about-us.html" class="rr-btn position-relative overflow-hidden">
+                                        <div class="panel wow"></div>
+                                        <span class="btn-wrap">
+                                            <span class="text-one">Read More <i class="fa-solid fa-plus"></i></span>
+                                            <span class="text-two">Read More <i class="fa-solid fa-plus"></i></span>
+                                        </span>
+                                    </a> -->
+                        </div>
+                    </div>
+
+                    <div class="col-lg-8">
+                        <div class="why-choose-us__wrapper">
+                            <div class="why-choose-us__wrapper-media">
+                                <div class="why-choose-us__wrapper-media-shap">
+                                    <img src="~/front-end_files/imgs/why-choose-us/why-choose-us-shap.png"
+                                         class="img-fluid"
+                                         alt="" />
+                                </div>
+                                <img src="~/front-end_files/imgs/why-choose-us/why-choose-us.png"
+                                     class="img-fluid"
+                                     alt="" />
+                            </div>
+
+                            <ul class="why-choose-us__wrapper-list">
+                                <li>
+                                    <i class="fa-solid fa-check"></i>Privacy and Security: We
+                                    value your privacy and work hard to ensure that all your
+                                    health data is stored securely, using the latest encryption
+                                    technologies to protect your information.
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>Ease of Use: We designed
+                                    the site to be user-friendly, whether you are new to using
+                                    technology or a professional. The site interface is simple
+                                    and intuitive, allowing you to navigate with ease.
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>Advanced Technology: We
+                                    provide you with the latest technology in the health field.
+                                    Our team continuously works on improving the services and
+                                    ensuring the provision of the most accurate and reliable
+                                    information.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- why-choose-us area end -->
+        <!-- about-us-3 area start -->
+        <section id="about-us" class="about-us-3 about-us-2__space overflow-hidden mt-30"
+                 style="padding-bottom: 0">
+            <div class="container">
+                <div class="about-us-3__background">
+                    <div class="about-us-3__shap"
+                         data-background="./assets/imgs/about-us-3/about-shap.png"></div>
+                </div>
+
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <div class="about-us-3__content" style="max-width: fit-content">
+                            <div class="section__title-wrapper mb-30">
+                                <h5 class="section__subtitle color-theme-primary mb-15 mb-xs-10 title-animation">
+                                    <img src="~/front-end_files/imgs/ask-quesiton/heart.png"
+                                         alt="icon not found"
+                                         class="img-fluid" />Important Advices
+                                </h5>
+                                <h2 class="section__title mb-20 text-capitalize title-animation">
+                                    Take care of yourself
+                                </h2>
+                                <!-- <p class="mb-30">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet rcus nunc. Duis egestas ac ante sed tincidunt.</p> -->
+                            </div>
+                            <ul class="about-us-3__content__list"
+                                style="max-width: fit-content; font-size: 12px">
+                                <li>
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <h5>
+                                        1.Ensure a Balanced Diet: Eat a variety of foods to get
+                                        all the necessary vitamins and minerals. Make sure to
+                                        include fruits, vegetables, proteins, and whole grains in
+                                        your daily diet.
+                                    </h5>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <h5>
+                                        2.Drink Enough Water: Staying hydrated helps improve
+                                        digestive and kidney functions and prevents dehydration.
+                                        Try to drink 8 cups of water daily.
+                                    </h5>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <h5>
+                                        3.Exercise Regularly: Aim for at least 30 minutes of
+                                        physical activity daily. This can include walking,
+                                        running, swimming, or even home workouts.
+                                    </h5>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <h5>
+                                        4. Get Adequate Sleep: Good sleep enhances both body and
+                                        mind health. Ensure you get 7-9 hours of sleep each day.
+                                    </h5>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <h5>
+                                        5. Regular Health Check-ups: Don't wait until you feel
+                                        sick to visit the doctor. Regular check-ups help detect
+                                        diseases early and increase the chances of successful
+                                        treatment.
+                                    </h5>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <h5>
+                                        6. Avoid Smoking and Limit Alcohol Consumption: Smoking
+                                        and alcohol can cause serious health problems like heart
+                                        disease and cancer. Try to quit smoking and limit alcohol
+                                        intake as much as possible.
+                                    </h5>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <h5>
+                                        7. Maintain Personal Hygiene: Regular hand washing and
+                                        using hand sanitizers can reduce the spread of infections.
+                                        Keep your teeth clean with regular brushing and flossing.
+                                    </h5>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <h5>
+                                        8. Reduce Stress and Anxiety: Practice relaxation
+                                        techniques like yoga and meditation, and make time for
+                                        activities you enjoy to help you relax.
+                                    </h5>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <h5>
+                                        9. Maintain a Healthy Weight: Excess weight can lead to
+                                        health issues like heart disease and diabetes. Try to
+                                        maintain a healthy weight through proper nutrition and
+                                        physical activity.
+                                    </h5>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <h5>
+                                        10. Stay Up-to-date with Vaccinations: Vaccinations
+                                        protect against many serious infectious diseases. Make
+                                        sure your vaccinations and those of your family members
+                                        are up to date.
+                                    </h5>
+                                </li>
+                            </ul>
+                            <!-- <div class="about-us-3__content-btn d-flex align-items-center mt-35">
+                                        <div class="about-us-3__content-btn__icon">
+                                            <i class="fa-solid fa-phone"></i>
+                                        </div>
+                                        <div class="about-us-3__content-btn__text">
+                                            <p class="mb-0 color-white">Requesting A Call:</p>
+                                            <h5 class="mb-0 color-white"><a href="tel:6295550129">(629) 555-0129</a></h5>
+                                        </div>
+                                    </div> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="about-us-3__media">
+                            <img src="~/front-end_files/imgs/about-us-3/about-us-3.png"
+                                 class="img-fluid"
+                                 alt="img not found" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- about-us-3 area start -->
+    </main>
+    <!-- Body main wrapper end -->
+    <!-- Footer area start -->
+    <footer>
+        <section class="theme-bg-color-900 overflow-hidden"
+                 data-background="assets/imgs/footer-3/background-shape.svg">
+            <div class="footer-3__bottom-wrapper">
+                <div class="container">
+                    <div class="footer-3__bottom">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="footer-3__copyright text-lg-start text-center">
+                                    <p class="mb-0">
+                                        © <a asp-action="Ads">Patients Insight's</a> 2024 | All
+                                        Rights Reserved
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="footer-3__copyright-menu">
+                                    <ul>
+                                        <!-- <li><a href="about-us.html">Trams & Condition</a></li>
+                                                      <li><a href="about-us.html">Privacy Policy</a></li>
+                                                      <li><a href="contact.html">Contact Us</a></li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+    <!-- Footer area end -->
+    <!-- JS here -->
+    <script src="~/front-end_files/js/vendor/jquery-3.7.1.min.js"></script>
+    <script src="~/front-end_files/js/plugins/waypoints.min.js"></script>
+    <script src="~/front-end_files/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="~/front-end_files/js/plugins/meanmenu.min.js"></script>
+    <script src="~/front-end_files/js/plugins/odometer.min.js"></script>
+    <script src="~/front-end_files/js/plugins/swiper.min.js"></script>
+    <script src="~/front-end_files/js/plugins/wow.js"></script>
+    <script src="~/front-end_files/js/vendor/magnific-popup.min.js"></script>
+    <script src="~/front-end_files/js/vendor/type.js"></script>
+
+    <script src="~/front-end_files/js/plugins/nice-select.min.js"></script>
+    <script src="~/front-end_files/js/vendor/jquery-ui.min.js"></script>
+    <script src="~/front-end_files/js/vendor/jquery.appear.js"></script>
+    <script src="~/front-end_files/js/plugins/parallax.min.js"></script>
+    <script src="~/front-end_files/js/plugins/parallax-scroll.js"></script>
+    <script src="~/front-end_files/js/plugins/gsap.min.js"></script>
+    <script src="~/front-end_files/js/plugins/ScrollTrigger.min.js"></script>
+    <script src="~/front-end_files/js/plugins/SplitText.js"></script>
+    <script src="~/front-end_files/js/plugins/tween-max.min.js"></script>
+    <script src="~/front-end_files/js/plugins/draggable.min.js"></script>
+    <script src="~/front-end_files/js/plugins/smoothscroll.js"></script>
+    <script src="~/front-end_files/js/vendor/ajax-form.js"></script>
+    <script src="~/front-end_files/js/main.js"></script>
+</body>
+</html>
